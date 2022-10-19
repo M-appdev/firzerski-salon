@@ -3,6 +3,7 @@ import { Flex, Image, Text } from "@chakra-ui/react";
 import { CalendarIcon, ArrowRightIcon } from "@chakra-ui/icons";
 
 export const Radnik = ({ ime ,slika}) => {
+
   return (
     <Flex
       width="400px"

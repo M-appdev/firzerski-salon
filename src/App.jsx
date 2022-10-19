@@ -12,11 +12,25 @@ function App() {
   const [showRadnikJK, setShowRadnikJK] = useState(false);
   const [showRadnikDP, setShowRadnikDP] = useState(false);
 
-  // useEffect(() => {
-  //   instance.post("/frizer/dodaj-frizera.php", { ime: "RADI" }).then((data) => {
-  //     console.log("data", data);
-  //   });
-  // }, []);
+  const [apiData, setApiData] = useState([]);
+  useEffect(() => {
+    instance.post("/termini/get-sve-termine.php").then((data) => {
+      console.log("opalio", data.data);
+      if (showRadnikMK) {
+        setApiData(
+          data.data.filter((termin) => termin.Frizer === "Milan Krunic")
+        );
+      } else if (showRadnikJK) {
+        setApiData(
+          data.data.filter((termin) => termin.Frizer === "Jovana Kajmakovic")
+        );
+      } else {
+        setApiData(
+          data.data.filter((termin) => termin.Frizer === "Darko Petkovic")
+        );
+      }
+    });
+  }, [showRadnikMK, showRadnikJK, showRadnikDP]);
 
   return (
     <div className="App">
@@ -37,14 +51,32 @@ function App() {
       >
         {showRadnikJK
           ? terminiJK.vremenskiIntervali.map((termin) => {
-              return <Termin data={termin} key={termin.id} />;
+              return (
+                <Termin
+                  data={termin}
+                  key={termin.id}
+                  popunjeniTermini={apiData}
+                />
+              );
             })
           : showRadnikMK
           ? terminiMK.vremenskiIntervali.map((termin) => {
-              return <Termin data={termin} key={termin.id} />;
+              return (
+                <Termin
+                  data={termin}
+                  key={termin.id}
+                  popunjeniTermini={apiData}
+                />
+              );
             })
           : terminiDP.vremenskiIntervali.map((termin) => {
-              return <Termin data={termin} key={termin.id} />;
+              return (
+                <Termin
+                  data={termin}
+                  key={termin.id}
+                  popunjeniTermini={apiData}
+                />
+              );
             })}
       </Flex>
     </div>

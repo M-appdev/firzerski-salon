@@ -106,11 +106,12 @@ export const MyModal = ({ isOpen, onClose, data }) => {
                 })
                 .then((data) => {
                   console.log("Uspješan post");
+                  window.location.reload()
+
                 })
                 .catch((e) => {
                   console.log(e);
                 });
-
               onClose();
             }}
           >

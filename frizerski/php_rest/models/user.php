@@ -187,5 +187,3 @@ if(isset($this->password)){
         return false;
     }
 }
-
-?>

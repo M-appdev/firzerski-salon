@@ -8,7 +8,17 @@ import {
 } from "@chakra-ui/icons";
 import { MyModal } from "./modal";
 
-export const Termin = ({ data }) => {
+export const Termin = ({ data, popunjeniTermini }) => {
+  console.log('popunjeniTermini', popunjeniTermini)
+  let terminSlobodan = true;
+  if (popunjeniTermini.length > 0) {
+    // console.log("popunjeniTermini", data.radnik, popunjeniTermini);
+    popunjeniTermini?.map((termin) => {
+      if (data.vrijeme === termin.Termin) {
+        terminSlobodan = false;
+      }
+    });
+  }
   const [isOpen, setisOpen] = useState(false);
   const onClose = () => {
     setisOpen(!isOpen);
@@ -22,9 +32,9 @@ export const Termin = ({ data }) => {
         borderRadius={"20px"}
         padding={"10px"}
         alignItems={"center"}
-        cursor={`${data.terminSlobodan && "pointer"}`}
+        cursor={`${terminSlobodan && "pointer"}`}
         onClick={() => {
-          data.terminSlobodan && setisOpen(true);
+          terminSlobodan && setisOpen(true);
         }}
       >
         <Flex
@@ -58,7 +68,7 @@ export const Termin = ({ data }) => {
           {data.vrijeme}
         </Text>
 
-        {data.terminSlobodan ? (
+        {terminSlobodan ? (
           <>
             <Text
               fontSize={"20px"}

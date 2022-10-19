@@ -9,7 +9,6 @@ class termin
     public $Zauzetost;
     public $Datum;
     public $Termin;
-
     public function __construct($db)
     {
         $this->conn = $db;
@@ -18,42 +17,30 @@ class termin
     public function get_sve_termine()
     {
 
-        $query = 'SELECT 
-                u.ID,
-                u.Frizer,
-                u.Zauzetost,
-                u.Datum,
-                u.Termin,
-            FROM
-                ' . $this->table . ' u
-            ';
+        $query = 'SELECT * FROM termini';
 
         $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->Frizer);
         $stmt->execute();
         if ($stmt->execute())
             return $stmt;
         else
             return false;
     }
-
-    public function get_frizer_by_id()
+    public function get_termine_po_frizeru()
     {
-
-        $query = 'SELECT 
-                u.id,
-                u.ime,
-            FROM
-                ' . $this->table . ' u
-            WHERE
-                u.id = ?
-            ';
+        $query = 'SELECT * FROM termini';
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $this->id);
+        $stmt->bindParam(1, $this->Frizer);
         $stmt->execute();
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        //   echo json_encode( $stmt->fetch(PDO::FETCH_ASSOC));
+        // $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $this->username = $row['ime'];
+        // $this->Frizer = $row['Frizer'];
+        // $this->Zauzetost = $row['Zauzetost'];
+        // $this->Datum = $row['Datum'];
+        // $this->Termin = $row['Termin'];
 
         return $stmt;
     }
