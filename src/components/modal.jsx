@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -15,6 +15,8 @@ import {
 } from "@chakra-ui/react";
 import instance from "../api/axios";
 export const MyModal = ({ isOpen, onClose, data }) => {
+  const [imeIPrezime, setimeIPrezime] = useState("test");
+  const [brTelefona, setBrTelefona] = useState("test");
   return (
     <Modal isCentered isOpen={isOpen} onClose={onClose}>
       <ModalOverlay
@@ -66,14 +68,14 @@ export const MyModal = ({ isOpen, onClose, data }) => {
               <Text w={"150px"} m={0} fontSize="20px" fontWeight="600">
                 Ime i Prezime:
               </Text>
-              <Input borderRadius={"10px"} paddingLeft="10px"></Input>
+              <Input borderRadius={"10px"} paddingLeft="10px" onChange={(value)=>setimeIPrezime(value.target.value)}></Input>
             </Flex>
 
             <Flex>
               <Text w={"150px"} m={0} fontSize="20px" fontWeight="600">
                 Broj Telefona:
               </Text>
-              <Input borderRadius={"10px"} paddingLeft="10px"></Input>
+              <Input borderRadius={"10px"} paddingLeft="10px" onChange={(value)=>setBrTelefona(value.target.value)}></Input>
             </Flex>
           </Flex>
         </ModalBody>
@@ -103,11 +105,12 @@ export const MyModal = ({ isOpen, onClose, data }) => {
                   Zauzetost: true,
                   Datum: "17/10/2022",
                   Termin: data.vrijeme,
+                  Musterija: imeIPrezime,
+                  BrojTelefona: brTelefona,
                 })
                 .then((data) => {
                   console.log("Uspješan post");
-                  window.location.reload()
-
+                  window.location.reload();
                 })
                 .catch((e) => {
                   console.log(e);

@@ -9,7 +9,6 @@ import {
 import { MyModal } from "./modal";
 
 export const Termin = ({ data, popunjeniTermini }) => {
-  console.log('popunjeniTermini', popunjeniTermini)
   let terminSlobodan = true;
   if (popunjeniTermini.length > 0) {
     // console.log("popunjeniTermini", data.radnik, popunjeniTermini);

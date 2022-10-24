@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Flex, Image, Text } from "@chakra-ui/react";
-import { CalendarIcon, ChevronDownIcon, ChekmarkIcon,  } from "@chakra-ui/icons";
+import { CalendarIcon, ChevronDownIcon, ChekmarkIcon } from "@chakra-ui/icons";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
@@ -12,7 +12,7 @@ export const NavKalendar = () => {
       <Flex
         alignItems={"center"}
         justifyContent={"center"}
-        padding={"0 64px"}
+        padding={"0 62px"}
         cursor={"pointer"}
         onClick={() => setShowCalendar(!showCalendar)}
       >
@@ -26,7 +26,9 @@ export const NavKalendar = () => {
           <Text fontSize={20} fontWeight={500}>
             Datum:
           </Text>
-          <Text fontWeight={700} textDecor={"underline"}>{calendarValue.toDateString()}</Text>
+          <Text fontWeight={700} textDecor={"underline"}>
+            {calendarValue.toDateString()}
+          </Text>
         </Flex>
         <ChevronDownIcon
           width={"fit-content"}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Image } from "@chakra-ui/react";
+import { Flex, Image, Link, Text } from "@chakra-ui/react";
 import { Radnik } from "./radnik";
 import { Logo } from "./logo";
 import { NavKalendar } from "./nav-kalendar";
@@ -11,6 +11,7 @@ const Header = ({
   showRadnikMK,
   showRadnikJK,
   showRadnikDP,
+  setShowTable,
 }) => {
   let darko = require("../../src/darko.jpg");
   let jovana = require("../../src/jovana.jpg");
@@ -25,9 +26,9 @@ const Header = ({
       backgroundColor={"#ECC8AE"}
     >
       <Logo />
+
       <a
         onClick={() => {
-          
           if (showRadnikMK) {
             setShowRadnikJK(true);
             setShowRadnikMK(false);
@@ -41,14 +42,42 @@ const Header = ({
         }}
       >
         {showRadnikJK ? (
-          <Radnik ime={"Jovana Kajmakovic"} slika={jovana} />
+          <Flex justify={"center"} align={"center"}>
+            <Text fontSize={"20px"} fontWeight={"600"} paddingLeft={"50px"}>
+              Frizer:
+            </Text>
+            <Radnik ime={"Jovana Kajmakovic"} slika={jovana} />
+          </Flex>
         ) : showRadnikMK ? (
-          <Radnik ime={"Milan Krunic"} slika={milan}></Radnik>
+          <Flex justify={"center"} align={"center"}>
+            <Text fontSize={"20px"} fontWeight={"600"} paddingLeft={"50px"}>
+              Frizer:
+            </Text>
+            <Radnik ime={"Milan Krunic"} slika={milan}></Radnik>
+          </Flex>
         ) : (
-          showRadnikDP && <Radnik ime={"Darko Petkovic"} slika={darko}></Radnik>
+          showRadnikDP && (
+            <Flex justify={"center"} align={"center"}>
+              <Text fontSize={"20px"} fontWeight={"600"} paddingLeft={"50px"}>
+                Frizer:
+              </Text>
+              <Radnik ime={"Darko Petkovic"} slika={darko}></Radnik>{" "}
+            </Flex>
+          )
         )}
       </a>
       <NavKalendar />
+
+      <Link
+        fontSize={"26px"}
+        fontWeight={"600"}
+        paddingLeft={"50px"}
+        textAlign={"center"}
+        onClick={()=>setShowTable(true)}
+        cursor={"pointer"}
+      >
+        Prikazi tabelu
+      </Link>
     </Flex>
   );
 };

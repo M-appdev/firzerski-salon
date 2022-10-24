@@ -6,10 +6,10 @@ export const Radnik = ({ ime ,slika}) => {
 
   return (
     <Flex
-      width="400px"
+      width="300px"
       height="100%"
       alignItems={"center"}
-      justifyContent={"center"}
+      justifyContent={"flex-start"}
       padding={"10px"}
       cursor={"pointer"}
     >
