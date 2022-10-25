@@ -22,9 +22,10 @@ $db = $database -> connect();
             extract($row);
             $termin = array(
                         'Frizer' => $Frizer,
-                        'Zauzetost' => $Zauzetost,
                         'Datum' => $Datum,
-                        'Termin' => $Termin
+                        'Termin' => $Termin,
+                        'Musterija' => $Musterija,
+                        'BrojTelefona' => $BrojTelefona,
                     );
             array_push($termini_arr, $termin);
         }

@@ -12,11 +12,13 @@ import {
   Text,
   Box,
   Input,
+  Spinner,
 } from "@chakra-ui/react";
 import instance from "../api/axios";
 export const MyModal = ({ isOpen, onClose, data }) => {
   const [imeIPrezime, setimeIPrezime] = useState("test");
   const [brTelefona, setBrTelefona] = useState("test");
+  const [spinner, setSpinner] = useState(false);
   return (
     <Modal isCentered isOpen={isOpen} onClose={onClose}>
       <ModalOverlay
@@ -99,6 +101,7 @@ export const MyModal = ({ isOpen, onClose, data }) => {
             fontWeight={"700"}
             cursor={"pointer"}
             onClick={() => {
+              setSpinner(true)
               instance
                 .post("termini/dodaj-termin.php", {
                   Frizer: data.radnik,
@@ -110,16 +113,17 @@ export const MyModal = ({ isOpen, onClose, data }) => {
                 })
                 .then((data) => {
                   console.log("Uspješan post");
-                  window.location.reload();
+                  setSpinner(false)
+                  onClose();
                 })
                 .catch((e) => {
                   console.log(e);
                 });
-              onClose();
             }}
           >
             Rezerviši
           </Button>
+          {spinner && <Spinner w={"50px"}></Spinner>}
           <Button
             backgroundColor={"#ECC8AE"}
             border={"1px solid #ECC8AE"}

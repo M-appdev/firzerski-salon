@@ -13,10 +13,18 @@ function App() {
   const [showRadnikJK, setShowRadnikJK] = useState(false);
   const [showRadnikDP, setShowRadnikDP] = useState(false);
   const [showTable, setShowTable] = useState(false);
-  const onClose = () => {
-    showTable && setShowTable(!showTable);
-  };
   const [apiData, setApiData] = useState([]);
+  const [terminDodan, setTerminDodan] = useState("");
+
+  const functionShowTable = (props) => {
+    setShowTable(props);
+    instance
+      .post("/termini/get-termine-za-frizera.php", { Frizer: "Milan Krunic" })
+      .then((data) => {
+        setApiData(data.data);
+      });
+  };
+
   useEffect(() => {
     instance.get("/termini/get-sve-termine.php").then((data) => {
       if (showRadnikMK) {
@@ -33,8 +41,8 @@ function App() {
         );
       }
     });
-  }, [showRadnikMK, showRadnikJK, showRadnikDP]);
-  console.log("setShowTable", showTable);
+  }, [showRadnikMK, showRadnikJK, showRadnikDP, terminDodan]);
+
   return (
     <div className="App">
       <Header
@@ -44,7 +52,7 @@ function App() {
         setShowRadnikMK={setShowRadnikMK}
         setShowRadnikJK={setShowRadnikJK}
         setShowRadnikDP={setShowRadnikDP}
-        setShowTable={setShowTable}
+        setShowTable={functionShowTable}
       />
       <Text
         padding={"5px 54px"}
@@ -68,6 +76,7 @@ function App() {
                   data={termin}
                   key={termin.id}
                   popunjeniTermini={apiData}
+                  setTerminDodan={setTerminDodan}
                 />
               );
             })
@@ -78,6 +87,7 @@ function App() {
                   data={termin}
                   key={termin.id}
                   popunjeniTermini={apiData}
+                  setTerminDodan={setTerminDodan}
                 />
               );
             })
@@ -86,6 +96,7 @@ function App() {
                 <Termin
                   data={termin}
                   key={termin.id}
+                  setTerminDodan={setTerminDodan}
                   popunjeniTermini={apiData}
                 />
               );

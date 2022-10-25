@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/icons";
 import { MyModal } from "./modal";
 
-export const Termin = ({ data, popunjeniTermini }) => {
+export const Termin = ({ data, popunjeniTermini ,setTerminDodan}) => {
   let terminSlobodan = true;
   if (popunjeniTermini.length > 0) {
     // console.log("popunjeniTermini", data.radnik, popunjeniTermini);
@@ -20,7 +20,9 @@ export const Termin = ({ data, popunjeniTermini }) => {
   }
   const [isOpen, setisOpen] = useState(false);
   const onClose = () => {
+    setTerminDodan(new Date())
     setisOpen(!isOpen);
+    // window.location.reload();
   };
   return (
     <>

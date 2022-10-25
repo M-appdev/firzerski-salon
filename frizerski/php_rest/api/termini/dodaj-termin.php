@@ -14,11 +14,12 @@ $db = $database->connect();
 
 $termin = new termin($db);
 $data = json_decode(file_get_contents("php://input"), true);
-echo($data["Zauzetost"]);
 $termin->Frizer = $data['Frizer'];
 $termin->Zauzetost = $data['Zauzetost'];
 $termin->Datum = $data['Datum'];
 $termin->Termin = $data['Termin'];
+$termin->Musterija = $data['Musterija'];
+$termin->BrojTelefona = $data['BrojTelefona'];
 
 if ($termin->dodaj_termin()) {
     http_response_code(201);

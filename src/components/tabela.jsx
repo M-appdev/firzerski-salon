@@ -9,26 +9,9 @@ import {
   ModalCloseButton,
   Button,
   Flex,
-  Text,
-  Box,
-  Input,
-  TableCaption,
-  Table,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-  TableContainer,
-  Tfoot,
 } from "@chakra-ui/react";
-import instance from "../api/axios";
-import { createColumnHelper } from "@tanstack/react-table";
 
 export const Tabela = ({ isOpen, onClose, data }) => {
-  const columnHelper = createColumnHelper();
-
-  console.log("data", data);
   return (
     <Modal isCentered isOpen={isOpen} onClose={onClose}>
       <ModalOverlay
@@ -71,21 +54,21 @@ export const Tabela = ({ isOpen, onClose, data }) => {
         </Flex>
         <ModalBody width={"900px"} backgroundColor={"white"} padding={"20px"}>
           <table>
+            <tr>
+              <th style={{ width: "150px", textAlign: "left" }}>Frizer</th>
+              <th style={{ width: "130px", textAlign: "left" }}>Datum</th>
+              <th style={{ width: "130px", textAlign: "left" }}>Termin</th>
+              <th style={{ width: "130px", textAlign: "left" }}>Musterija</th>
+              <th style={{ width: "110px", textAlign: "left" }}>Broj Telefona</th>
+            </tr>
             {data.map((termin) => {
               return (
                 <>
                   <tr>
-                    <th>Frizer</th>
-                    <th>Datum</th>
-                    <th>Termin</th>
-                    <th>Musterija</th>
-                    <th>Broj Telefona</th>
+                    {Object.entries(termin).map(([key, value]) => {
+                      return <td style={{ width: "110px" }}>{value}</td>;
+                    })}
                   </tr>
-                  <tr>{Object.entries(termin).map(([key, value]) => {
-                    return(
-                      <td>{value}</td>
-                    )
-                  })}</tr>
                 </>
               );
             })}
