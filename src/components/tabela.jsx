@@ -58,8 +58,8 @@ export const Tabela = ({ isOpen, onClose, data }) => {
               <th style={{ width: "150px", textAlign: "left" }}>Frizer</th>
               <th style={{ width: "130px", textAlign: "left" }}>Datum</th>
               <th style={{ width: "130px", textAlign: "left" }}>Termin</th>
-              <th style={{ width: "130px", textAlign: "left" }}>Musterija</th>
-              <th style={{ width: "110px", textAlign: "left" }}>Broj Telefona</th>
+              <th style={{ width: "130px", textAlign: "left" }}>Broj Telefona</th>
+              <th style={{ width: "150px", textAlign: "left" }}>Musterija</th>
             </tr>
             {data.map((termin) => {
               return (

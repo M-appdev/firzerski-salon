@@ -19,8 +19,19 @@ function App() {
   const functionShowTable = (props) => {
     setShowTable(props);
     instance
-      .post("/termini/get-termine-za-frizera.php", { Frizer: "Milan Krunic" })
+      .get("/termini/get-termine-za-frizera.php", {
+        params: {
+          Frizer: `${
+            showRadnikMK
+              ? "Milan Krunic"
+              : showRadnikJK
+              ? "Jovana Kajmakovic"
+              : "Darko Petkovic"
+          }`,
+        },
+      })
       .then((data) => {
+        console.log("data", data);
         setApiData(data.data);
       });
   };
